@@ -1,0 +1,18 @@
+{
+  "name": "nolgia",
+  "owner": {
+    "name": "NOLGIA"
+  },
+  "metadata": {
+    "description": "NOLGIA agent skills: generate images, video, and audio on the NOLGIA platform with the nolgia CLI.",
+    "version": "1.1.0"
+  },
+  "plugins": [
+    {
+      "name": "nolgia",
+      "source": "./",
+      "description": "Generate images, video, and audio on NOLGIA, direct multi-shot video, and produce vertical UGC ads, all through the nolgia CLI.",
+      "version": "1.1.0"
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+name: Validate skills
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: Skill frontmatter, versions and manifests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+
+      - name: Install PyYAML
+        run: python3 -m pip install --quiet pyyaml==6.0.2
+
+      - name: Lint skills
+        run: python3 scripts/check-skills.py
