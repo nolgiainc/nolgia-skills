@@ -8,7 +8,7 @@ Agent skills for generating images, video, and audio on [NOLGIA](https://nolgia.
 
 ## Install
 
-Pick one. Every method installs the same skills.
+The repository and plugin methods below include all four skills. The `nolgia` CLI installs only the three generation skills, not `nolgia-after-effects`.
 
 ### `npx skills` (cross-agent)
 
@@ -35,7 +35,7 @@ Inside Claude Code:
 
 ### The `nolgia` CLI
 
-The CLI ships the same skills and installs them itself:
+The CLI bundles and installs `nolgia-platform`, `nolgia-video-prompting`, and `nolgia-ugc-ads`. For `nolgia-after-effects`, use a repository or plugin method above:
 
 ```bash
 nolgia skills install                 # ~/.claude/skills (Claude Code, user-wide)

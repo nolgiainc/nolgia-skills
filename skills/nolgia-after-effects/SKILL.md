@@ -58,7 +58,11 @@ server's environment.
    `media/`, LUTs under `luts/`, `manifest.json` and `README.txt`. Media over
    256 MiB in total is left out and listed in `manifest.json`.
 
-   Without the browser (the CLI has no export command yet):
+   Without the browser (the CLI has no export command yet), first create a
+   personal access token at [API tokens](https://nolgia.ai/settings/api-tokens)
+   and export it as `NOLGIA_TOKEN` in your local shell. `nolgia auth login`
+   stores credentials internally and does not set this variable. Never paste
+   the token into chat or logs.
 
    ```bash
    curl -fsSL -H "Authorization: Bearer $NOLGIA_TOKEN" \
