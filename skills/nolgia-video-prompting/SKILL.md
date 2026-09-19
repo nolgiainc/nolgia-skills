@@ -1,7 +1,7 @@
 ---
 name: nolgia-video-prompting
 description: "Directing craft for NOLGIA video generation: shot grammar, the breathing pattern, multi-shot sequencing, character and location consistency with reference images, per-shot sound design, and the iteration process (keep approved shots, regenerate only what failed). Use when: writing or fixing video prompts, planning a multi-clip production, a short film, a trailer or a music video on NOLGIA, or deciding which shots to regenerate. NOT for: platform mechanics such as auth, flags, jobs and credits (use nolgia-platform), vertical UGC ad pipelines (use nolgia-ugc-ads), or still-image prompting."
-version: 1.1.0
+version: 1.2.0
 author: NOLGIA
 license: MIT
 metadata:

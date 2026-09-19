@@ -50,7 +50,7 @@ Inside Claude Code:
 /plugin install nolgia@nolgia
 ```
 
-This reads `.claude-plugin/marketplace.json` and registers the three skills as `/nolgia:nolgia-platform`, `/nolgia:nolgia-video-prompting`, and `/nolgia:nolgia-ugc-ads`.
+This reads `.claude-plugin/marketplace.json` and registers the skills as `/nolgia:nolgia-platform`, `/nolgia:nolgia-video-prompting`, `/nolgia:nolgia-ugc-ads`, and `/nolgia:nolgia-after-effects`.
 
 ## Option 4: Cursor
 
@@ -66,7 +66,7 @@ gh skill install nolgiainc/nolgia-skills --all --agent codex --scope user
 
 ## Option 6: the `nolgia` CLI
 
-The CLI bundles the same three skills, so an installed CLI needs nothing else:
+The CLI bundles the three generation skills (`nolgia-platform`, `nolgia-video-prompting`, `nolgia-ugc-ads`), so an installed CLI needs nothing else for those. The desktop `nolgia-after-effects` skill ships from this repo only:
 
 ```bash
 nolgia skills list

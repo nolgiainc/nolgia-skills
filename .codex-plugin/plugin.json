@@ -1,6 +1,6 @@
 {
   "name": "nolgia",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Generate images, video, and audio on NOLGIA, direct multi-shot video, and produce vertical UGC ads, all through the nolgia CLI.",
   "author": {
     "name": "NOLGIA",
