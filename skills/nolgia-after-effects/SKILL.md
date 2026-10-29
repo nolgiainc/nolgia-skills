@@ -1,53 +1,55 @@
 ---
 name: nolgia-after-effects
-description: "Finish NOLGIA work in Adobe After Effects on the user's own computer: open a NOLGIA Studio composition in After Effects through its build.jsx export, drive After Effects with the local fnf-after-effects-mcp server (inspect comps, layers, keyframes, render check frames), bring NOLGIA-generated media into a project, and upload the finished render back to the NOLGIA library with the nolgia CLI. Use when: the user has After Effects installed and asks to 'open my Studio edit in After Effects', 'finish this in AE', 'add motion graphics to my NOLGIA video', or 'get my AE render into NOLGIA'. NOT for: generating media (use nolgia-platform), Premiere Pro or DaVinci Resolve (use the sequence.xml export in the web app), Blender, or the hosted NOLGIA Agent, which runs in the cloud and cannot reach a desktop app."
-version: 1.2.0
+description: "Finish NOLGIA work in Adobe After Effects on the user's own computer through NOLGIA for Adobe, the NOLGIA plugin in After Effects: open a NOLGIA Studio composition in After Effects through its build.jsx export, read and change comps with ExtendScript, render check frames, bring NOLGIA library media into a project and send the finished render back to the NOLGIA library. Use when: the user has After Effects with NOLGIA for Adobe and asks to 'open my Studio edit in After Effects', 'finish this in AE', 'add motion graphics to my NOLGIA video', or 'get my AE render into NOLGIA'. NOT for: generating media (use nolgia-platform), Premiere Pro, Illustrator, Photoshop, Blender or DaVinci Resolve (each has its own NOLGIA plugin), or scripting After Effects from outside the plugin."
+version: 1.3.0
 author: NOLGIA
 license: MIT
 metadata:
-  tags: [nolgia, after-effects, motion-graphics, mcp, desktop, studio-export, jsx]
+  tags: [nolgia, after-effects, motion-graphics, mcp, desktop, plugin, studio-export, jsx]
   related_skills: [nolgia-platform]
 ---
 
 # NOLGIA + After Effects (desktop)
 
-Three pieces on the user's own machine:
+Three pieces:
 
 - **After Effects** (2024 to 2026, macOS or Windows), licensed and installed
   by the user.
-- **`fnf-after-effects-mcp`**: a local stdio MCP server that drives After
-  Effects through its scripting interface (12 tools, `ae_*`). It runs only on
-  the same computer as After Effects.
-- **The `nolgia` CLI** (see nolgia-platform for install and auth): generates
-  media, lists compositions, uploads the finished render.
+- **NOLGIA for Adobe**, the NOLGIA plugin in After Effects (one install also
+  covers Premiere Pro and Illustrator): it runs every command in After
+  Effects and shows each one in its Activity list.
+- **Your agent connected to NOLGIA**: the NOLGIA MCP server
+  (`https://mcp.nolgia.ai/mcp`) gives it the `nolgia_app_*` tools, or the
+  `nolgia` CLI (see nolgia-platform) sends the same commands with
+  `nolgia api` (the Desktop apps guide, below).
 
-NOLGIA Studio's **Export for editing > After Effects** writes the bridge
-between them: a `build.jsx` script that rebuilds the Studio edit as a native
-After Effects comp.
+NOLGIA Agent at nolgia.ai/agent works in After Effects through the same
+plugin, so the person never needs to leave NOLGIA; this skill is for an
+agent the person runs themselves.
+
+NOLGIA Studio's **Export for editing > After Effects** writes a `build.jsx`
+script that rebuilds a Studio edit as a native After Effects comp.
 
 ## Setup (once)
 
-```bash
-node --version                      # 24 or newer
-npm install --global --ignore-scripts fnf-after-effects-mcp@0.1.1
-fnf-after-effects doctor            # node, platform, server, After Effects path, bundled skills
-fnf-after-effects config            # prints the MCP entry with absolute paths
-```
+1. Install NOLGIA for Adobe from https://nolgia.ai/plugins/after-effects.
+2. In After Effects open **Window > Extensions > NOLGIA**, click **Sign in**,
+   check that the code matches on the page that opens and click **Connect**.
+   Keep **Connected** on.
+3. Connect your agent to NOLGIA (https://nolgia.ai/mcp), or sign in the CLI
+   with `nolgia auth login`.
+4. Check: `nolgia_app_status` (or `nolgia api GET /bridge/sessions`) lists
+   After Effects on this computer.
 
-Register the server with the agent you are running in, using the printed
-`command` and `args`:
+## Only through the plugin
 
-- **Codex**: `fnf-after-effects install-codex`.
-- **Claude Code**: `claude mcp add after-effects -- <command> <args>` with the
-  two values from `config`.
-- **Cursor or another client**: merge the printed JSON into its MCP config.
-
-Then refresh the client's MCP connection and, in After Effects, turn on
-**Allow Scripts to Write Files and Access Network** (Preferences, or
-Settings on macOS, > Scripting & Expressions). On macOS, allow the Automation prompt the first time. Verify
-with `ae_project_info`: it answers with the open project, or says what
-permission is missing. For a nonstandard install path, set `AE_MCP_EXE` in the
-server's environment.
+Drive After Effects only through the NOLGIA plugin. Never script it from
+outside: no AppleScript or `osascript`, no `DoScript`, no COM, no Windows UI
+automation, no simulated keystrokes or clicks, and no other local After
+Effects MCP server that scripts the app from outside. Those skip the
+person's Activity list, **Ask before running code** and the plugin's error
+handling, and a bad call that way can crash After Effects and lose unsaved
+work: one malformed AppleScript command crashed it in testing.
 
 ## Open a Studio composition in After Effects
 
@@ -82,13 +84,12 @@ server's environment.
    The media URLs in `manifest.json` expire after about an hour: download
    them right away, and never paste them into chat or logs.
 3. The user runs it: **File > Scripts > Run Script File > build.jsx**, with
-   `build.jsx` still next to `media/`. The MCP server does not run scripts
-   (its arbitrary-eval switch, `AE_MCP_ENABLE_EVAL`, stays off), so ask the
-   user to do this one click.
-4. Check the result through the MCP: `ae_project_info`, then `ae_comp_info`
-   on the new comp (size, fps, duration, layer list) and `ae_layer_info` on
-   text and masked layers. `ae_render_frame` a few frames (start, a cut, a
-   keyframed move, the end) and look at them.
+   `build.jsx` still next to `media/`. Ask for this one click; it is their
+   project.
+4. Check the result through the plugin: `nolgia_app_info` (the new comp's
+   size, frame rate, frames and layers), then `nolgia_app_preview` with
+   `comp` and `frame` at a few frames (start, a cut, a keyframed move, the
+   end) and look at them.
 5. Fix what the export cannot carry, per `README.txt`:
    - **Fonts**: text layers use PostScript names; a missing font shows as a
      substitute. Tell the user which to install.
@@ -99,43 +100,53 @@ server's environment.
      timed media, plain text and the Studio edits do. Keyframes arrive as
      sampled linear keys.
 
-## Drive After Effects with the MCP
+## Drive After Effects through the plugin
 
-- Start with `ae_get_skill({})` and `ae_context`: the bundled workflows and
-  the ES3 and undo rules. `ae_catalog({})` then `ae_catalog({category})`
-  lists the exact operations `ae_do` accepts; discover them rather than
-  guessing names.
-- Every `ae_*` call is one undo group; `batch.run` groups several but does
-  not roll back on failure. A call that timed out may still have run:
-  inspect before retrying a change.
-- Preserve the user's unsaved work. Save with `ae_save_project` only when
-  they ask. For a look-only session, set `AE_MCP_READONLY=1` on the server.
+- Start with `nolgia_app_info`: the project, whether it has unsaved changes,
+  the active comp (size, frame rate, frames, layers) and the other comps.
+- Read the rules every NOLGIA workflow in After Effects follows before you
+  change anything: `nolgia api GET /desktop-apps/after_effects/rules` (safety
+  copies, keeping work editable, previews, the ES3 traps).
+- Change things with `nolgia_app_run`: ExtendScript, ES3 (no `let`, `const`,
+  arrow functions or `JSON`). Set `result` to a short summary. Each run is
+  one undo step in After Effects, and a failure comes back with the line
+  that failed.
+- Look with `nolgia_app_preview` (`comp`, `frame`) after each visible change.
+- Make a safety copy first with `nolgia_app_export` `aep`, and save with
+  `nolgia_app_save` only when the person agrees.
+- Some commands wait for the person in the plugin (code, when **Ask before
+  running code** is on). Tell them to look at the NOLGIA panel, and never
+  resend after a **Deny**.
+
+Every command kind, its arguments and the approval flow:
+https://docs.nolgia.ai/guides/desktop-apps.html
 
 ## Bring NOLGIA media into a project
 
-Generate with nolgia-platform (`nolgia gen image ... --out plate.png`,
-`nolgia gen video ... --out shot.mp4`), keep the files in the project's
-folder, then import them with the import operation `ae_catalog` lists, or
-ask the user to drag them in. The generation costs credits; After Effects
-work costs none.
+Generate with nolgia-platform (images, clips, voiceover), then bring the
+library asset in with `nolgia_app_import` and its `asset_id` (`as`:
+`footage` or `layer`). A NOLGIA color preset installs as a LUT with
+`color_preset`. Generation costs credits; work in After Effects adds no
+generation cost.
 
 ## Send the finished render back to NOLGIA
 
-The user renders from the Render Queue (H.264 MP4 or ProRes MOV). Then:
+`nolgia_app_export` with `format: "mp4"` renders the comp through the Render
+Queue on the person's computer and puts the file in their NOLGIA library
+(`png` for a still). A render the user made themselves uploads with:
 
 ```bash
 nolgia assets upload final.mp4 --project-id <project_id> --json
 ```
 
-The uploaded video is an ordinary NOLGIA asset: share it, cut shorts from it,
-or place it in another Studio composition.
+The result is an ordinary NOLGIA asset: share it, cut shorts from it, or
+place it in another Studio composition.
 
 ## Limits
 
-- Desktop only: After Effects and this server must be on the same machine.
-  The hosted NOLGIA Agent cannot reach them; it can prepare the export and the
-  media, and the user finishes here.
-- Adobe licensing, OS permissions and the scripting preference belong to the
-  user; the server cannot grant them.
-- Premiere Pro and DaVinci Resolve use the other export format, `sequence.xml`
-  (Export for editing > Premiere Pro or DaVinci Resolve), with no MCP.
+- After Effects runs on the person's computer; NOLGIA reaches it only while
+  the plugin is signed in with **Connected** on, and NOLGIA Agent only while
+  **Allow NOLGIA Agent** is on too.
+- Adobe licensing and OS permissions belong to the user.
+- The export cannot carry authored HTML, CSS or GSAP animation (see
+  `README.txt` in the export).
