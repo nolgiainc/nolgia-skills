@@ -1,7 +1,7 @@
 # NOLGIA Skills
 
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE)
-[![Version](https://img.shields.io/badge/version-1.2.0-green.svg)](./VERSION)
+[![Version](https://img.shields.io/badge/version-1.3.0-green.svg)](./VERSION)
 [![Skills](https://img.shields.io/badge/skills-4-blueviolet.svg)](#skills)
 
 Agent skills for generating images, video, and audio on [NOLGIA](https://nolgia.ai). They teach Claude Code, Cursor, Codex, and any agent that loads Markdown skills how to drive the [`nolgia` CLI](https://github.com/nolgiainc/nolgia-cli): pick a model from the live catalog, submit and follow jobs, keep characters consistent, direct multi-shot video, produce vertical UGC ads, and assemble clips into one finished video.
@@ -53,7 +53,7 @@ For the NOLGIA MCP server and a `/nolgia` command in Cursor, see [nolgiainc/curs
 | [`nolgia-platform`](./skills/nolgia-platform) | `/nolgia:nolgia-platform` | Auth, the live model catalog, image/video/audio generation, outpainting (`--expand-to`), voices, async jobs (`nolgia jobs list`), characters, projects, credits, assembling clips into a rendered video, and failure recovery. |
 | [`nolgia-video-prompting`](./skills/nolgia-video-prompting) | `/nolgia:nolgia-video-prompting` | Directing craft: shot grammar, the breathing pattern, multi-shot sequencing, reference-image consistency, per-shot sound, and the keep/fix/cut iteration loop. |
 | [`nolgia-ugc-ads`](./skills/nolgia-ugc-ads) | `/nolgia:nolgia-ugc-ads` | Vertical UGC ads: persona, portraits, screenshot B-roll, a lip-synced talking head from a voiceover, the interleaved timeline, and face-safe text zones. |
-| [`nolgia-after-effects`](./skills/nolgia-after-effects) | `/nolgia:nolgia-after-effects` | Desktop only: open a NOLGIA Studio composition in After Effects through its `build.jsx` export, drive After Effects with the local `fnf-after-effects-mcp` server, and upload the finished render back to NOLGIA. |
+| [`nolgia-after-effects`](./skills/nolgia-after-effects) | `/nolgia:nolgia-after-effects` | Desktop only: open a NOLGIA Studio composition in After Effects through its `build.jsx` export, work in After Effects through NOLGIA for Adobe (the NOLGIA plugin, never outside scripting), and send the finished render back to NOLGIA. |
 
 They chain: `nolgia-platform` owns the mechanics; `nolgia-video-prompting` and `nolgia-ugc-ads` own the craft and hand every command back to it; `nolgia-after-effects` takes finished NOLGIA work into a local After Effects.
 

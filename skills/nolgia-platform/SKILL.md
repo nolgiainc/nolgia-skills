@@ -1,7 +1,7 @@
 ---
 name: nolgia-platform
 description: "Generate images, video, and audio on the NOLGIA platform with the `nolgia` CLI or the NOLGIA MCP server (https://mcp.nolgia.ai/mcp): auth, model choice from the live catalog, async jobs, reference images, outpainting, voices, credits, and failure recovery. Use when: the user asks for AI-generated media and NOLGIA is available, e.g. 'generate an image', 'make a video', 'animate this photo', 'extend this image to 9:16', 'make a voiceover', 'check my jobs', or 'assemble these clips into one video'. NOT for: directing craft and multi-shot planning (use nolgia-video-prompting), vertical UGC ad production (use nolgia-ugc-ads), or editing media locally without the platform."
-version: 1.2.0
+version: 1.3.0
 author: NOLGIA
 license: MIT
 metadata:
@@ -184,6 +184,30 @@ nolgia compositions status <render_id>
 **Never** report a "final video" or "final cut" until a render has
 **succeeded** and you can name the produced asset id/URL. Clips dropped into
 a project folder are not the video the customer asked for.
+
+## Desktop apps (the NOLGIA plugins)
+
+The NOLGIA plugins for Blender, After Effects, Premiere Pro, Illustrator,
+Photoshop and DaVinci Resolve Studio (https://nolgia.ai/plugins) connect the
+person's own app once it is signed in with **Connected** on. NOLGIA Agent at
+nolgia.ai/agent works in those apps through the same plugins.
+
+```bash
+nolgia api GET /bridge/sessions                       # the connected apps on their computer
+nolgia api GET /desktop-apps/<app>/rules              # the rules for working in that app
+nolgia api POST /bridge/commands --body @command.json # e.g. {"app":"blender","kind":"info"}
+nolgia api GET /bridge/commands/<id> --query wait=25  # repeat until it is not queued or running
+```
+
+With the MCP server the same commands are the `nolgia_app_*` tools. Every
+command kind, its arguments, the code each app runs and the commands that
+wait for the person's approval: https://docs.nolgia.ai/guides/desktop-apps.html
+
+Reach an app only through its NOLGIA plugin. Never script it from outside:
+no AppleScript or `osascript`, no COM, no Windows UI automation, no simulated
+keystrokes or clicks. Those skip the person's Activity list, **Ask before
+running code** and the plugin's error handling, and a bad call can crash the
+app and lose unsaved work.
 
 ## Failure recovery
 
