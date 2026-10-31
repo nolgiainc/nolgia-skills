@@ -1,7 +1,7 @@
 ---
 name: nolgia-video-prompting
 description: "Directing craft for NOLGIA video generation: shot grammar, the breathing pattern, multi-shot sequencing, character and location consistency with reference images, per-shot sound design, and the iteration process (keep approved shots, regenerate only what failed). Use when: writing or fixing video prompts, planning a multi-clip production, a short film, a trailer or a music video on NOLGIA, or deciding which shots to regenerate. NOT for: platform mechanics such as auth, flags, jobs and credits (use nolgia-platform), vertical UGC ad pipelines (use nolgia-ugc-ads), or still-image prompting."
-version: 1.3.0
+version: 1.4.0
 author: NOLGIA
 license: MIT
 metadata:
@@ -22,10 +22,17 @@ burning credits.
 <camera: lens/movement>. <film stock / grade>. AUDIO: <sound design>.
 ```
 
-Example: *WIDE SHOT. A rust-flecked Subaru moves south on an empty
+Example: *WIDE SHOT. A rust-flecked hatchback moves south on an empty
 two-lane highway through flat farmland. Late afternoon, overcast gray sky.
-Static camera, 35mm at T4.0, Kodak Vision3 500T, subtle grain. AUDIO: car
-engine, wind, distant birds — natural ambient.*
+Static camera, 35mm feel, fine film grain and a print stock look. AUDIO: car
+engine, wind, distant birds, natural ambient.*
+
+Grade in post, not in the prompt: on Seedance 2.5 never paste film stock or
+camera brand names, and on any model never describe lens artifacts as things
+in the frame ("streak flares", "barrel distortion" and "vignette corners"
+render as overlays). Pick the stock as a Studio color preset
+(`nolgia color-presets list`: 500T for night interiors, 250D for day, the 2383
+print finish over either).
 
 Rules that survived production:
 - **One action per shot.** Two actions = the model picks one or morphs.
@@ -36,6 +43,33 @@ Rules that survived production:
   carries character and environment; re-describing them fights it.
 - **No text in generated frames.** Models garble it; burn text in post.
 - **≤3 characters per shot**, close-up references beat distant ones.
+
+## Scripted films: the workflow, not shot-by-shot prompts
+
+A short film, skit, trailer or narrative ad where people act or speak is never
+made by sending each line of a shot list to `nolgia gen video`. That is how an
+in-house short came out looking like AI (2026-10-31). The order that works:
+
+1. **Story first**: logline, scene list, the script with every spoken line.
+2. **Cast and world as locked assets**: one photoreal portrait per character
+   (each view its own image, never an expression grid as the identity
+   reference), saved with `nolgia characters create`; empty location plates
+   from a three-quarter angle, never frontal, one plate per lighting state.
+3. **Storyboard**: one keyframe still per shot built from those references
+   (`gpt-image-2`, up to four references), watched as an animatic before any
+   video. A look on one element only (a black-and-white character in a color
+   room) is built into these stills.
+4. **Image to video from the approved keyframe.** Speaking or scene-carrying
+   people on `minimax-h3` (native lip-synced speech); its start frame cannot be
+   combined with `--element` or `--character-id`, so the keyframe carries
+   identity and the description is restated in words. Action, vehicles and
+   creatures on Seedance 2.5; never Seedance for lifelike humans.
+5. **Natural takes, cut in the edit**: calm scenes 3–4s a shot, tense 1.5–2s,
+   continuous takes cut in a Studio composition, never 1-second slices of
+   separate generations. Short prompts: who, one action, timed beats, the
+   exact line, the sound.
+6. **Post**: grade with a Studio color preset, one mix with the dialogue on
+   top, and titles only: no burned dialogue captions on a film.
 
 ## The breathing pattern (multi-shot sequencing)
 
