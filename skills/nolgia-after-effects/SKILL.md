@@ -1,7 +1,7 @@
 ---
 name: nolgia-after-effects
 description: "Finish NOLGIA work in Adobe After Effects on the user's own computer through NOLGIA for Adobe, the NOLGIA plugin in After Effects: open a NOLGIA Studio composition in After Effects through its build.jsx export, read and change comps with ExtendScript, render check frames, bring NOLGIA library media into a project and send the finished render back to the NOLGIA library. Use when: the user has After Effects with NOLGIA for Adobe and asks to 'open my Studio edit in After Effects', 'finish this in AE', 'add motion graphics to my NOLGIA video', or 'get my AE render into NOLGIA'. NOT for: generating media (use nolgia-platform), Premiere Pro, Illustrator, Photoshop, Blender or DaVinci Resolve (each has its own NOLGIA plugin), or scripting After Effects from outside the plugin."
-version: 1.5.0
+version: 1.6.0
 author: NOLGIA
 license: MIT
 metadata:
