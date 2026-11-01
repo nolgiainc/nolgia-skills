@@ -1,7 +1,7 @@
 # NOLGIA Skills
 
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE)
-[![Version](https://img.shields.io/badge/version-1.9.0-green.svg)](./VERSION)
+[![Version](https://img.shields.io/badge/version-1.10.0-green.svg)](./VERSION)
 [![Skills](https://img.shields.io/badge/skills-4-blueviolet.svg)](#skills)
 
 Agent skills for generating images, video, and audio on [NOLGIA](https://nolgia.ai). They teach Claude Code, Cursor, Codex, and any agent that loads Markdown skills how to drive the [`nolgia` CLI](https://github.com/nolgiainc/nolgia-cli): pick a model from the live catalog, submit and follow jobs, keep characters consistent, direct multi-shot video, produce vertical UGC ads, and assemble clips into one finished video.
