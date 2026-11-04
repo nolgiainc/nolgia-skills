@@ -1,7 +1,7 @@
 ---
 name: nolgia-ugc-ads
 description: "Produce vertical (9:16) UGC-style ad videos on NOLGIA: persona spec, consistent character portraits, app-screenshot B-roll, a lip-synced talking head from a voiceover, and face-safe text overlay rules. Use when: the user wants TikTok, Reels or Shorts ads, testimonial or influencer-style content, a talking-head product pitch, or one character scaled across many ad variants. NOT for: cinematic short films or trailers (use nolgia-video-prompting), single images or plain clips without an ad structure (use nolgia-platform), or horizontal TV spots."
-version: 1.11.1
+version: 1.11.2
 author: NOLGIA
 license: MIT
 metadata:
@@ -26,8 +26,13 @@ ad. Never reuse screenshots across characters — it kills authenticity.
 ## 2. Assets, in this order
 
 ```bash
-# Portrait: head/shoulders in the UPPER 60% of frame (lower 40% = text space)
-nolgia gen image --prompt "<persona visual spec>, selfie framing, golden hour" --out marcus.png
+# Portrait: head/shoulders in the UPPER 60% of frame (lower 40% = text space).
+# Name the model: with none the CLI falls back to a flux model, never the lane
+# for people. People photos run on seedream-v5-pro at 2k with Aura off (the
+# owner's blind people-model test, 2026-11-04); a portrait that holds the
+# product stays on gpt-image-2.5-flare.
+nolgia gen image --model seedream-v5-pro --quality 2k --aura false --aspect-ratio 9:16 \
+  --prompt "<persona visual spec>, selfie framing, golden hour" --out marcus.png
 
 # Screenshots (3-5, each one narrative-specific)
 nolgia gen image --prompt "phone messaging UI: unread 9pm quote request from a customer..." --out s1.png

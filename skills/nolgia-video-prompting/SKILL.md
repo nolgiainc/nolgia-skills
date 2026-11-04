@@ -1,7 +1,7 @@
 ---
 name: nolgia-video-prompting
 description: "Directing craft for NOLGIA video generation: the film standard (references with stated jobs, casting and styling for the role, location plates, one structured prompt per take, written cuts at the genre's rhythm, best of N takes, sound, typeset words, the realism finish), plus the breathing pattern, per-shot sound design and the keep-what-works iteration loop. Use when: writing or fixing video prompts, planning a multi-clip production, a short film, a series episode, a trailer, a commercial or a music video on NOLGIA, or deciding which shots to regenerate. NOT for: platform mechanics such as auth, flags, jobs and credits (use nolgia-platform), vertical UGC ad pipelines (use nolgia-ugc-ads), or still-image prompting."
-version: 1.11.1
+version: 1.11.2
 author: NOLGIA
 license: MIT
 metadata:
@@ -125,7 +125,9 @@ in-house short came out looking like AI (2026-10-31). The order that works:
   into the video. Never write beauty words (flawless, poreless, glass smooth,
   lit from within, dewy, symmetrical). Stills by job: `gpt-image-2.5-flare` for
   words that must read and product sheets from the real photos; `seedream-v5-pro`
-  and `gpt-image-2.5-flare` side by side for people, picked by eye; plates on
+  at `2k` first and `gpt-image-2.5-flare` beside it for people, picked by eye
+  (the owner's blind people-model test, 2026-11-04: Seedream the most real; a
+  person holding a product or a beauty item stays on Flare first); plates on
   `seedream-v5-pro` (or `nano-banana-2.1`); sheets and state edits on
   `nano-banana-pro` or Flare; never a flux model for people or commercial frames.
 - **One composite sheet per role**: one image on mid grey (#808080), no labels: full
