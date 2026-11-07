@@ -50,7 +50,8 @@ nolgia voices list --model <tts model>   # voice ids for --voice
 ## Generate
 
 ```bash
-# Image (prints the signed URL; --out saves it). Default model: flux-pro.
+# Image (prints the signed URL; --out saves it). Default model: flux-3-image
+# (FLUX 3 Image, 3 credits at 1k; takes --input references).
 nolgia gen image --prompt "isometric server room, dramatic lighting" --out img.png
 
 # Video (async job; waits by default, --no-wait returns the job id).
