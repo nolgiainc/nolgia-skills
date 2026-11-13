@@ -52,6 +52,8 @@ Inside Claude Code:
 
 This reads `.claude-plugin/marketplace.json` and registers the skills as `/nolgia:nolgia-platform`, `/nolgia:nolgia-video-prompting`, `/nolgia:nolgia-ugc-ads`, and `/nolgia:nolgia-after-effects`.
 
+The plugin also adds the hosted NOLGIA MCP server as `nolgia`. Run `/mcp`, pick `nolgia`, and sign in to NOLGIA in the browser page it opens. In claude.ai or Cowork, install the plugin from **Customize > Plugins** with the same marketplace, then connect **nolgia** on the plugin's **Connectors** tab.
+
 ## Option 4: Cursor
 
 Cursor reads `.cursor-plugin/plugin.json` and the `skills/` folder when the repo is added as a plugin. Without the plugin flow, use Option 1 or 2 with `--agent cursor`. For the hosted NOLGIA MCP server and a `/nolgia` command, install [nolgiainc/cursor-plugin](https://github.com/nolgiainc/cursor-plugin) as well.

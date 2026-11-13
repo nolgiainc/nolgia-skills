@@ -1,7 +1,7 @@
 # NOLGIA Skills
 
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE)
-[![Version](https://img.shields.io/badge/version-1.11.3-green.svg)](./VERSION)
+[![Version](https://img.shields.io/badge/version-1.12.0-green.svg)](./VERSION)
 [![Skills](https://img.shields.io/badge/skills-4-blueviolet.svg)](#skills)
 
 Agent skills for generating images, video, and audio on [NOLGIA](https://nolgia.ai). They teach Claude Code, Cursor, Codex, and any agent that loads Markdown skills how to drive the [`nolgia` CLI](https://github.com/nolgiainc/nolgia-cli): pick a model from the live catalog, submit and follow jobs, keep characters consistent, direct multi-shot video, produce vertical UGC ads, and assemble clips into one finished video.
@@ -32,6 +32,12 @@ Inside Claude Code:
 /plugin marketplace add nolgiainc/nolgia-skills
 /plugin install nolgia@nolgia
 ```
+
+The plugin also connects the hosted NOLGIA MCP server (`https://mcp.nolgia.ai/mcp`). Run `/mcp` in Claude Code, pick `nolgia` and sign in to NOLGIA in the browser page it opens; there is no token to copy. Until you sign in, the skills drive the `nolgia` CLI instead.
+
+### claude.ai and Cowork
+
+In claude.ai or the Claude desktop app, open **Customize > Plugins**, add the marketplace `nolgiainc/nolgia-skills`, and install **nolgia**. Then open the plugin's **Connectors** tab, connect **nolgia** and sign in to NOLGIA. The skills load in chat and Cowork and call NOLGIA through the connector, so no CLI is needed there.
 
 ### The `nolgia` CLI
 
@@ -74,6 +80,12 @@ They chain: `nolgia-platform` owns the mechanics; `nolgia-video-prompting` and `
 
 - The `nolgia` CLI: `brew install nolgiainc/nolgia/nolgia`, `npm install -g @nolgia/cli`, or `curl -fsSL https://raw.githubusercontent.com/nolgiainc/nolgia-cli/main/install.sh | bash`.
 - A NOLGIA account: `nolgia auth login`, or a personal access token in `NOLGIA_TOKEN` (API credits).
+
+## What the plugin runs and connects to
+
+- **Skills:** Markdown instructions only. They tell the agent to run the `nolgia` CLI on your machine when it is installed.
+- **MCP server:** one remote server, `nolgia`, at `https://mcp.nolgia.ai/mcp` (Streamable HTTP), run by NOLGIA. You sign in with OAuth on nolgia.ai; the plugin stores no credentials and reads no environment variables. Prompts, reference files and generation settings you send through it go to NOLGIA to make the media, and generations spend your NOLGIA credits. See [nolgia.ai/privacy](https://nolgia.ai/privacy) and [nolgia.ai/terms](https://nolgia.ai/terms).
+- **No hooks, agents, executables or package installs.**
 
 ## Maintaining
 
