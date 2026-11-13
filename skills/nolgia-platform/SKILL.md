@@ -1,7 +1,7 @@
 ---
 name: nolgia-platform
 description: "Generate images, video, and audio on the NOLGIA platform with the `nolgia` CLI or the NOLGIA MCP server (https://mcp.nolgia.ai/mcp): auth, model choice from the live catalog, async jobs, reference images, outpainting, voices, credits, and failure recovery. Use when: the user asks for AI-generated media and NOLGIA is available, e.g. 'generate an image', 'make a video', 'animate this photo', 'extend this image to 9:16', 'make a voiceover', 'check my jobs', or 'assemble these clips into one video'. NOT for: directing craft and multi-shot planning (use nolgia-video-prompting), vertical UGC ad production (use nolgia-ugc-ads), or editing media locally without the platform."
-version: 1.11.3
+version: 1.12.0
 author: NOLGIA
 license: MIT
 metadata:
@@ -19,8 +19,10 @@ one API. Two ways in from an agent:
   `npm install -g @nolgia/cli`,
   `curl -fsSL https://raw.githubusercontent.com/nolgiainc/nolgia-cli/main/install.sh | bash`,
   or `cargo install nolgia-cli`.
-- **MCP**: `https://mcp.nolgia.ai/mcp` (Streamable HTTP, `Authorization:
-  Bearer <token>`). Tools `nolgia_text_to_image`, `nolgia_image_to_image`,
+- **MCP**: `https://mcp.nolgia.ai/mcp` (Streamable HTTP; OAuth sign-in to
+  NOLGIA, or `Authorization: Bearer <token>`). The Claude plugin connects it
+  as `nolgia`; in claude.ai and Cowork, where there is no CLI, use these
+  tools. Tools `nolgia_text_to_image`, `nolgia_image_to_image`,
   `nolgia_text_to_video`, `nolgia_image_to_video`, `nolgia_text_to_audio`,
   `nolgia_list_models`, `nolgia_list_jobs`, `nolgia_list_assets`,
   `nolgia_get_asset`, `nolgia_get_account`, plus characters, projects and
