@@ -1,7 +1,7 @@
 ---
 name: nolgia-after-effects
 description: "Finish NOLGIA work in Adobe After Effects on the user's own computer through NOLGIA for Adobe, the NOLGIA plugin in After Effects: open a NOLGIA Studio composition in After Effects through its build.jsx export, read and change comps with ExtendScript, render check frames, bring NOLGIA library media into a project and send the finished render back to the NOLGIA library. Use when: the user has After Effects with NOLGIA for Adobe and asks to 'open my Studio edit in After Effects', 'finish this in AE', 'add motion graphics to my NOLGIA video', or 'get my AE render into NOLGIA'. NOT for: generating media (use nolgia-platform), Premiere Pro, Illustrator, Photoshop, Blender or DaVinci Resolve (each has its own NOLGIA plugin), or scripting After Effects from outside the plugin."
-version: 1.12.1
+version: 1.12.2
 author: NOLGIA
 license: MIT
 metadata:
@@ -60,16 +60,14 @@ work: one malformed AppleScript command crashed it in testing.
    `media/`, LUTs under `luts/`, `manifest.json` and `README.txt`. Media over
    256 MiB in total is left out and listed in `manifest.json`.
 
-   Without the browser (the CLI has no export command yet), first create a
-   personal access token at [API tokens](https://nolgia.ai/settings/api-tokens)
-   and export it as `NOLGIA_TOKEN` in your local shell. `nolgia auth login`
-   stores credentials internally and does not set this variable. Never paste
-   the token into chat or logs.
+   Without the browser: the CLI has no export command yet. The export
+   endpoint is in the
+   [compositions guide](https://docs.nolgia.ai/guides/compositions.html) and
+   needs the user's own API credentials, so the user downloads `export.zip`
+   themselves; never ask for or handle a token. Then unpack it and fetch the
+   media:
 
    ```bash
-   curl -fsSL -H "Authorization: Bearer $NOLGIA_TOKEN" \
-     "${NOLGIA_API_URL:-https://api.nolgia.ai}/v1/compositions/<composition_id>/export?format=aejsx" \
-     -o export.zip
    unzip export.zip -d studio-export && cd studio-export
    python3 - <<'PY'
    import json, pathlib, urllib.request
