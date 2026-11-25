@@ -6,19 +6,13 @@ You are an AI coding agent. The user asked you to install the NOLGIA skills. Fol
 
 Skip this step if `nolgia --version` already prints a version.
 
-```bash
-curl -fsSL https://raw.githubusercontent.com/nolgiainc/nolgia-cli/main/install.sh | bash
-```
-
-The installer needs no sudo: it writes to `~/.local/bin` (or `~/bin`) and adds that directory to the shell profile. If `nolgia` is not found afterwards, run the `export PATH=...` line the installer printed.
-
-Other routes if the script cannot run: `brew install nolgiainc/nolgia/nolgia`, `npm install -g @nolgia/cli`, or `cargo install nolgia-cli`.
+Follow the CLI's own agent install guide: [nolgia-cli INSTALL_FOR_AGENTS.md](https://github.com/nolgiainc/nolgia-cli/blob/main/INSTALL_FOR_AGENTS.md). With Homebrew or npm already present, `brew install nolgiainc/nolgia/nolgia` or `npm install -g @nolgia/cli` is enough.
 
 Verify: `nolgia --version` prints `nolgia X.Y.Z`.
 
 ## Step 2: Authenticate
 
-If `NOLGIA_TOKEN` is already set in the environment, skip to the check below. Otherwise ask the user to run:
+Run `nolgia auth status`. If it prints an email, skip to Step 3. Otherwise ask the user to run:
 
 ```bash
 nolgia auth login

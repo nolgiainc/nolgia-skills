@@ -1,7 +1,7 @@
 # NOLGIA Skills
 
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE)
-[![Version](https://img.shields.io/badge/version-1.12.2-green.svg)](./VERSION)
+[![Version](https://img.shields.io/badge/version-1.12.3-green.svg)](./.claude-plugin/plugin.json)
 [![Skills](https://img.shields.io/badge/skills-4-blueviolet.svg)](#skills)
 
 Agent skills for generating images, video, and audio on [NOLGIA](https://nolgia.ai). They teach Claude Code, Cursor, Codex, and any agent that loads Markdown skills how to drive the [`nolgia` CLI](https://github.com/nolgiainc/nolgia-cli): pick a model from the live catalog, submit and follow jobs, keep characters consistent, direct multi-shot video, produce vertical UGC ads, and assemble clips into one finished video.
@@ -79,7 +79,7 @@ They chain: `nolgia-platform` owns the mechanics; `nolgia-video-prompting` and `
 ## Requirements
 
 - The `nolgia` CLI: `brew install nolgiainc/nolgia/nolgia`, or `npm install -g @nolgia/cli`. Other routes are in the [CLI install guide](https://github.com/nolgiainc/nolgia-cli#installation).
-- A NOLGIA account: `nolgia auth login`, or a personal access token in `NOLGIA_TOKEN` (API credits).
+- A NOLGIA account: sign in with `nolgia auth login`. For CI, the [CLI docs](https://github.com/nolgiainc/nolgia-cli) cover token sign-in.
 
 ## What the plugin runs and connects to
 
@@ -89,7 +89,7 @@ They chain: `nolgia-platform` owns the mechanics; `nolgia-video-prompting` and `
 
 ## Maintaining
 
-The three generation skills are the same files the CLI bundles in [`crates/cli/skills`](https://github.com/nolgiainc/nolgia-cli/tree/main/crates/cli/skills); change them there and copy them here in the same release. `nolgia-after-effects` is a desktop skill and lives only here. `python3 scripts/check-skills.py` (run in CI) enforces the conventions: `name` equals the folder, `version` equals [VERSION](./VERSION) and every plugin manifest, the description carries a "Use when" trigger and a "NOT for" boundary within 1,024 characters, `related_skills` resolve, and no skill reaches outside its folder.
+The three generation skills are the same files the CLI bundles in [`crates/cli/skills`](https://github.com/nolgiainc/nolgia-cli/tree/main/crates/cli/skills); change them there and copy them here in the same release. `nolgia-after-effects` is a desktop skill and lives only here. The lint in [`.github/workflows/validate-skills.yml`](./.github/workflows/validate-skills.yml) enforces the conventions: `name` equals the folder, `version` equals the version in [`.claude-plugin/plugin.json`](./.claude-plugin/plugin.json) and every other manifest, the description carries a "Use when" trigger and a "NOT for" boundary within 1,024 characters, `related_skills` resolve, and no skill reaches outside its folder.
 
 ## License
 
