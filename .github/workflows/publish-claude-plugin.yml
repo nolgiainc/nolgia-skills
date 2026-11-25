@@ -49,7 +49,7 @@ jobs:
             git worktree add --detach publish
             git -C publish checkout --orphan claude-plugin
           fi
-          git -C publish rm -rq --ignore-unmatch .
+          git -C publish rm -rqf --ignore-unmatch .
           find publish -mindepth 1 -maxdepth 1 ! -name .git -exec rm -rf {} +
           cp -R "$out/." publish/
           git -C publish add -A
