@@ -4,15 +4,15 @@
     "name": "NOLGIA"
   },
   "metadata": {
-    "description": "NOLGIA agent skills: generate images, video, and audio on the NOLGIA platform with the nolgia CLI.",
-    "version": "1.12.0"
+    "description": "NOLGIA agent skills: generate images, video, and audio on the NOLGIA platform through the hosted NOLGIA MCP server or the nolgia CLI.",
+    "version": "1.12.1"
   },
   "plugins": [
     {
       "name": "nolgia",
       "source": "./",
-      "description": "Generate images, video, and audio on NOLGIA, direct multi-shot video, and produce vertical UGC ads, all through the nolgia CLI.",
-      "version": "1.12.0"
+      "description": "Generate images, video, and audio on NOLGIA, direct multi-shot video, and produce vertical UGC ads, through the hosted NOLGIA MCP server (OAuth sign-in) or the nolgia CLI.",
+      "version": "1.12.1"
     }
   ]
 }
