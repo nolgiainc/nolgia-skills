@@ -1,7 +1,7 @@
 # NOLGIA Skills
 
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE)
-[![Version](https://img.shields.io/badge/version-1.12.1-green.svg)](./VERSION)
+[![Version](https://img.shields.io/badge/version-1.12.2-green.svg)](./VERSION)
 [![Skills](https://img.shields.io/badge/skills-4-blueviolet.svg)](#skills)
 
 Agent skills for generating images, video, and audio on [NOLGIA](https://nolgia.ai). They teach Claude Code, Cursor, Codex, and any agent that loads Markdown skills how to drive the [`nolgia` CLI](https://github.com/nolgiainc/nolgia-cli): pick a model from the live catalog, submit and follow jobs, keep characters consistent, direct multi-shot video, produce vertical UGC ads, and assemble clips into one finished video.
@@ -48,7 +48,7 @@ nolgia skills install                 # ~/.claude/skills (Claude Code, user-wide
 nolgia skills install --target dir --dir ~/.cursor/skills
 ```
 
-More options, including Cursor and Codex, in [INSTALL.md](./INSTALL.md). To let your agent do the install, paste [INSTALL_FOR_AGENTS.md](./INSTALL_FOR_AGENTS.md) into it.
+More options, including Cursor and Codex, in [INSTALL.md](https://github.com/nolgiainc/nolgia-skills/blob/main/INSTALL.md). To let your agent do the install, paste [INSTALL_FOR_AGENTS.md](https://github.com/nolgiainc/nolgia-skills/blob/main/INSTALL_FOR_AGENTS.md) into it.
 
 For the NOLGIA MCP server and a `/nolgia` command in Cursor, see [nolgiainc/cursor-plugin](https://github.com/nolgiainc/cursor-plugin).
 
@@ -78,7 +78,7 @@ They chain: `nolgia-platform` owns the mechanics; `nolgia-video-prompting` and `
 
 ## Requirements
 
-- The `nolgia` CLI: `brew install nolgiainc/nolgia/nolgia`, `npm install -g @nolgia/cli`, or `curl -fsSL https://raw.githubusercontent.com/nolgiainc/nolgia-cli/main/install.sh | bash`.
+- The `nolgia` CLI: `brew install nolgiainc/nolgia/nolgia`, or `npm install -g @nolgia/cli`. Other routes are in the [CLI install guide](https://github.com/nolgiainc/nolgia-cli#installation).
 - A NOLGIA account: `nolgia auth login`, or a personal access token in `NOLGIA_TOKEN` (API credits).
 
 ## What the plugin runs and connects to

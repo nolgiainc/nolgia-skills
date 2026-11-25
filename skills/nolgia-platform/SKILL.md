@@ -1,7 +1,7 @@
 ---
 name: nolgia-platform
 description: "Generate images, video, and audio on the NOLGIA platform with the `nolgia` CLI or the NOLGIA MCP server (https://mcp.nolgia.ai/mcp): auth, model choice from the live catalog, async jobs, reference images, outpainting, voices, credits, and failure recovery. Use when: the user asks for AI-generated media and NOLGIA is available, e.g. 'generate an image', 'make a video', 'animate this photo', 'extend this image to 9:16', 'make a voiceover', 'check my jobs', or 'assemble these clips into one video'. NOT for: directing craft and multi-shot planning (use nolgia-video-prompting), vertical UGC ad production (use nolgia-ugc-ads), or editing media locally without the platform."
-version: 1.12.1
+version: 1.12.2
 author: NOLGIA
 license: MIT
 metadata:
@@ -15,12 +15,11 @@ NOLGIA generates images, video (with native audio), and audio/TTS through
 one API. Two ways in from an agent:
 
 - **CLI** (this skill's default): `nolgia`. Add `--json` for machine
-  output. Install one of: `brew install nolgiainc/nolgia/nolgia`,
-  `npm install -g @nolgia/cli`,
-  `curl -fsSL https://raw.githubusercontent.com/nolgiainc/nolgia-cli/main/install.sh | bash`,
-  or `cargo install nolgia-cli`.
+  output. Install with `brew install nolgiainc/nolgia/nolgia` or
+  `npm install -g @nolgia/cli`; other routes are in the
+  [CLI install guide](https://github.com/nolgiainc/nolgia-cli#installation).
 - **MCP**: `https://mcp.nolgia.ai/mcp` (Streamable HTTP; OAuth sign-in to
-  NOLGIA, or `Authorization: Bearer <token>`). The Claude plugin connects it
+  NOLGIA). The Claude plugin connects it
   as `nolgia`; in claude.ai and Cowork, where there is no CLI, use these
   tools. Tools `nolgia_text_to_image`, `nolgia_image_to_image`,
   `nolgia_text_to_video`, `nolgia_image_to_video`, `nolgia_text_to_audio`,
@@ -31,10 +30,14 @@ one API. Two ways in from an agent:
 ## Auth
 
 ```bash
-export NOLGIA_TOKEN=nol_...   # PAT from nolgia.ai/settings/api-tokens (spends API credits)
-nolgia auth status            # verify: prints "email (tier)"
-# interactive alternative: nolgia auth login  (device flow)
+nolgia auth login     # device-flow sign-in in the browser
+nolgia auth status    # verify: prints "email (tier)"
 ```
+
+For CI and headless runs the CLI also reads a personal access token from the
+`NOLGIA_TOKEN` environment variable, which the user creates at
+nolgia.ai/settings/api-tokens and sets themselves (token requests spend API
+credits). Never ask for a token or paste one into chat or logs.
 
 `NOLGIA_API_URL=https://api.stg.nolgia.ai` targets staging: use it for
 experiments, production for deliverables.
