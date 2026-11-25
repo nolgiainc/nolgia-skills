@@ -10,16 +10,16 @@ Three skills ship in this repo:
 
 ## Prerequisites
 
-Install the NOLGIA CLI (no sudo; installs to `~/.local/bin`):
+Install the NOLGIA CLI and sign in:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/nolgiainc/nolgia-cli/main/install.sh | bash
+brew install nolgiainc/nolgia/nolgia   # or: npm install -g @nolgia/cli
 nolgia auth login
 ```
 
-Alternatives: `brew install nolgiainc/nolgia/nolgia`, `npm install -g @nolgia/cli`, or `cargo install nolgia-cli`. Prebuilt binaries cover macOS (universal), Linux x86_64 and Windows x86_64; Linux arm64 and Windows arm64 builds ship from the first CLI release after v0.2.26.
+The shell installer, Cargo and prebuilt binaries are in the [CLI install guide](https://github.com/nolgiainc/nolgia-cli#installation). Prebuilt binaries cover macOS (universal), Linux x86_64 and Windows x86_64; Linux arm64 and Windows arm64 builds ship from the first CLI release after v0.2.26.
 
-For CI or headless agents, skip the browser login and export a personal access token from [nolgia.ai/settings/api-tokens](https://nolgia.ai/settings/api-tokens) as `NOLGIA_TOKEN`. Token requests spend API credits.
+For CI or headless agents, the [CLI docs](https://github.com/nolgiainc/nolgia-cli) cover signing in with a personal access token instead of the browser. Token requests spend API credits.
 
 ## Option 1: `npx skills` (cross-agent)
 

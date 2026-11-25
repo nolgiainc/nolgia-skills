@@ -1,7 +1,7 @@
 {
   "name": "nolgia",
   "displayName": "NOLGIA",
-  "version": "1.12.2",
+  "version": "1.12.3",
   "description": "Generate images, video, and audio on NOLGIA from Claude: platform mechanics, video directing craft, and vertical UGC ads. Connects the hosted NOLGIA MCP server with OAuth sign-in; in Claude Code the skills can also drive the nolgia CLI.",
   "author": {
     "name": "NOLGIA",
